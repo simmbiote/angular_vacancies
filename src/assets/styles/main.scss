@@ -1,0 +1,54 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$gsdh-vacancies-primary: mat-palette($mat-grey, 800);
+$gsdh-vacancies-accent: mat-palette($mat-amber, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$gsdh-vacancies-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$gsdh-vacancies-theme: mat-light-theme($gsdh-vacancies-primary, $gsdh-vacancies-accent, $gsdh-vacancies-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($gsdh-vacancies-theme);
+
+@import "~angular-material/angular-material.scss";
+
+@import "~bootstrap-4-grid/scss/grid.scss";
+
+$primary-color: #ffc400;
+$secondary-color: #424242;
+
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+p {
+  line-height: 1.7;
+}
+
+.mat-card {
+  margin-bottom: 32px;
+}
+
+.floating-nav {
+  background-color: $secondary-color;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #fff;
+}
