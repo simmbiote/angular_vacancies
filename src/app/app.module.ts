@@ -17,9 +17,20 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { JoinUsComponent } from './pages/join-us/join-us.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { VacanciesService } from './services/vacancies.service';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { VacancyFormComponent } from './pages/admin/vacancy-form/vacancy-form.component';
+import { MatFormFieldModule, MatInputModule, MatRippleModule, MatSelectModule, MatCheckboxModule, MatTableModule, MatAccordion, MatExpansionModule } from '@angular/material';
 
 const appRoutes: Routes = [
   { path: 'join-us', component: JoinUsComponent },
+  { path: 'admin', component: AdminComponent  },
+  { path: 'admin/vancancy/:id', component: AdminComponent  },
+  { path: 'admin/vancancy/:id', component: AdminComponent  },
   // { path: 'hero/:id',      component: HeroDetailComponent },
   // {
   //   path: 'heroes',
@@ -45,9 +56,13 @@ const appRoutes: Routes = [
     ItemComponent,
     JoinUsComponent,
     NotFoundComponent,
-    HomepageComponent
+    HomepageComponent,
+    AdminComponent,
+    VacancyFormComponent
         ],
   imports: [
+
+    // Needed for General, Layout.
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -55,12 +70,31 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     FlexLayoutModule,
+
+    // Needed for FORMS 
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatExpansionModule,
+
+    // Needed for DB INTERACTIONS
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+
+    // ROUTING
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [
+    VacanciesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

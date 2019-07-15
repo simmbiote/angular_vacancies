@@ -52,3 +52,8 @@ p {
   padding-bottom: 10px;
   color: #fff;
 }
+
+textarea, body .mat-form-field-infix, body .mat-form-field,
+input[type="text"] {
+  width: 100%;
+}

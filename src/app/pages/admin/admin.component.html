@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Admin</h1> 
+
+      <mat-table [dataSource]="items" class="mat-elevation-z8">
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef>Title. </mat-header-cell>
+          <mat-cell *matCellDef="let item"> {{item.payload.doc.data().title}} </mat-cell>
+        </ng-container>
+
+        <!-- Department Column -->
+        <ng-container matColumnDef="department">
+          <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+          <mat-cell *matCellDef="let item"> {{item.payload.doc.data().department}} </mat-cell>
+        </ng-container>
+
+        <!-- Active Column -->
+        <ng-container matColumnDef="active">
+          <mat-header-cell *matHeaderCellDef> Active </mat-header-cell>
+          <mat-cell *matCellDef="let item"> {{item.payload.doc.data().active}} </mat-cell>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> actions </mat-header-cell>
+          <mat-cell *matCellDef="let item"> Actions... </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+      <p>&nbsp;</p>
+
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Add
+            </mat-panel-title>
+            <mat-panel-description>
+              Add a vacancy
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-vacancy-form></app-vacancy-form>
+        </mat-expansion-panel>
+    </div>
+  </div>
+</div>
