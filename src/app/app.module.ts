@@ -11,7 +11,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { ListComponent } from './components/vacancies/list/list.component';
-import { ItemComponent } from './components/vacancies/list/item/item.component';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JoinUsComponent } from './pages/join-us/join-us.component';
@@ -19,18 +18,18 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { VacanciesService } from './services/vacancies.service';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
 import { VacancyFormComponent } from './pages/admin/vacancy-form/vacancy-form.component';
-import { MatFormFieldModule, MatInputModule, MatRippleModule, MatSelectModule, MatCheckboxModule, MatTableModule, MatAccordion, MatExpansionModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatRippleModule, MatSelectModule, MatCheckboxModule, MatTableModule, MatAccordion, MatExpansionModule, MatIconModule } from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
   { path: 'join-us', component: JoinUsComponent },
   { path: 'admin', component: AdminComponent  },
-  { path: 'admin/vancancy/:id', component: AdminComponent  },
-  { path: 'admin/vancancy/:id', component: AdminComponent  },
+  { path: 'admin/:type/:id', component: AdminComponent  },
   // { path: 'hero/:id',      component: HeroDetailComponent },
   // {
   //   path: 'heroes',
@@ -53,7 +52,6 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     ListComponent,
-    ItemComponent,
     JoinUsComponent,
     NotFoundComponent,
     HomepageComponent,
@@ -70,6 +68,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     FlexLayoutModule,
+    MatIconModule,
+
 
     // Needed for FORMS 
     MatButtonModule,
@@ -90,7 +90,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     VacanciesService

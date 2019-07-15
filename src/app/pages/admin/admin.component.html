@@ -23,9 +23,9 @@
         </ng-container>
 
         <!-- Actions Column -->
-        <ng-container matColumnDef="actions">
+        <ng-container matColumnDef="actions"  > 
           <mat-header-cell *matHeaderCellDef> actions </mat-header-cell>
-          <mat-cell *matCellDef="let item"> Actions... </mat-cell>
+          <mat-cell *matCellDef="let item"> <a href="#edit" (click)="loadItemToEdit(item)"><mat-icon>edit</mat-icon></a> <a href="#view"><mat-icon>launch</mat-icon></a> <a href="#" (click)="this.deleteItem(item)"><mat-icon>delete</mat-icon></a>  </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

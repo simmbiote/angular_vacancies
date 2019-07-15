@@ -32,6 +32,14 @@ $gsdh-vacancies-theme: mat-light-theme($gsdh-vacancies-primary, $gsdh-vacancies-
 $primary-color: #ffc400;
 $secondary-color: #424242;
 
+a {
+  color: #000;
+  transition: all .2s linear;
+
+  &:hover {
+    color: $primary-color
+  }
+}
 
 .container {
   max-width: 1140px;

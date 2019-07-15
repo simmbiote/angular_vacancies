@@ -72,7 +72,7 @@ export class VacanciesService {
   getVacancy(id) { 
     // return this.firestore.collection("gsdh_vacancies").doc(id);
     return new Promise<any>((resolve, reject) => {
-      this.firestore.collection('/gsdh_vacancies').snapshotChanges()
+      this.firestore.doc(id).snapshotChanges()
       .subscribe(snapshots => {
         resolve(snapshots)
       })
@@ -95,6 +95,46 @@ export class VacanciesService {
     .collection("gsdh_vacancies")
     .doc(data.payload.doc.id) // choose the document
     .delete();
+  }
+
+
+  // Load form from item.
+
+  loadForm(item){
+
+    const itemPayload = item;
+
+    this.form = new FormGroup({
+      title: new FormControl(itemPayload.title),
+      image_url: new FormControl(itemPayload.image_url),
+      department: new FormControl(itemPayload.department),
+      intro: new FormControl(itemPayload.intro),
+      requirements: new FormControl(itemPayload.requirements),
+      responsibilities: new FormControl(itemPayload.responsibilities),
+      contact: new FormControl(itemPayload.contact),
+      // expires: new FormControl(''),
+      active: new FormControl(itemPayload.active),
+      accept_terms: new FormControl(itemPayload.accept_terms),
+    })
+ 
+
+  }
+
+  // clear form content
+
+  clearForm(){
+    this.form = new FormGroup({
+      title: new FormControl(''),
+      image_url: new FormControl(''),
+      department: new FormControl(''),
+      intro: new FormControl(''),
+      requirements: new FormControl(''),
+      responsibilities: new FormControl(''),
+      contact: new FormControl(''),
+      // expires: new FormControl(''),
+      active: new FormControl(false),
+      accept_terms: new FormControl(false),
+    })
   }
 
 }
