@@ -14,38 +14,27 @@ import { ActivatedRoute } from "@angular/router";
 export class AdminComponent implements OnInit {
 
   items;
-
+  id;
   displayedColumns: string[] = ['title', 'department', 'active', 'actions'];
-
 
   constructor(private vacanciesService: VacanciesService, private route:ActivatedRoute) { }
   
   ngOnInit() {
     this.getItems();
-    console.log(  this.route.snapshot.paramMap.get("type"),   this.route.snapshot.paramMap.get("id") );
-   }
-
-    getItems(){
+  }
+  
+  getItems(){
      this.vacanciesService.getVacancies()
-     .subscribe(res => {
-      this.items = res
-      console.log('this.items)', this.items);
-      return this.items;
-     });
+     .then(res => this.items = res )
    }
-
 
    loadItemToEdit(item){ 
     this.vacanciesService.loadForm(item);
-    console.log("EDIGT...")
     return false;
-
    }
 
    deleteItem = item => {
-
     if(!confirm(`Are you sure you  want to delete ${item.payload.doc.data().title}`)) return false;
-
     this.vacanciesService.deleteVacancy(item);
     return false;
    }
@@ -54,5 +43,4 @@ export class AdminComponent implements OnInit {
      this.vacanciesService.clearForm();
    }
  
-
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="top">
   <div class="row">
     <div class="col">
       <h1>Admin</h1> 
@@ -7,7 +7,7 @@
         <!-- Title Column -->
         <ng-container matColumnDef="title">
           <mat-header-cell *matHeaderCellDef>Title. </mat-header-cell>
-          <mat-cell *matCellDef="let item"> {{item.payload.doc.data().title}} </mat-cell>
+          <mat-cell *matCellDef="let item"> {{item.payload.doc.data().title}}  </mat-cell>
         </ng-container>
 
         <!-- Department Column -->
@@ -23,9 +23,9 @@
         </ng-container>
 
         <!-- Actions Column -->
-        <ng-container matColumnDef="actions"  > 
+        <ng-container matColumnDef="actions"  >  
           <mat-header-cell *matHeaderCellDef> actions </mat-header-cell>
-          <mat-cell *matCellDef="let item"> <a href="#edit" (click)="loadItemToEdit(item)"><mat-icon>edit</mat-icon></a> <a href="#view"><mat-icon>launch</mat-icon></a> <a href="#" (click)="this.deleteItem(item)"><mat-icon>delete</mat-icon></a>  </mat-cell>
+          <mat-cell *matCellDef="let item"> <a routerLink="/admin/vacancy/{{item.payload.doc.id}}" href="#edit{{item.payload.doc.id}}" ><mat-icon>edit</mat-icon></a> <a href="#view" target="_blank" routerLink="/vacancies/{{item.payload.doc.data().department | slugify}}/{{item.payload.doc.data().slug}}" title="View"><mat-icon>launch</mat-icon></a> <a href="#" (click)="this.deleteItem(item)"><mat-icon>delete</mat-icon></a>  </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -37,7 +37,7 @@
       <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Add
+                {{  "Add"}} 
             </mat-panel-title>
             <mat-panel-description>
               Add a vacancy

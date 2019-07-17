@@ -25,10 +25,13 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
+              "node_modules/quill/dist/quill.core.css",
               "src/assets/styles/main.scss",
               "src/styles.css"
             ],
             "scripts": [
+              "node_modules/ngx-quill/bundles/ngx-quill.umd.js",
+              "node_modules/quill/dist/quill.js"
             ]
           },
           "configurations": {
@@ -86,10 +89,13 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
+              "node_modules/quill/dist/quill.core.css",
               "src/assets/styles/main.scss",
               "src/styles.css"
             ],
             "scripts": [
+              "node_modules/ngx-quill/bundles/ngx-quill.umd.js",
+              "node_modules/quill/dist/quill.js"
             ]
           }
         },

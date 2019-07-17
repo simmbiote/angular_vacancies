@@ -10,6 +10,7 @@ export class VacanciesService {
 
   /*
   Title
+  slug
   Department
   Intro
   Requirements
@@ -22,26 +23,16 @@ export class VacanciesService {
   form = new FormGroup({
     title: new FormControl(''),
     image_url: new FormControl(''),
+    slug: new FormControl(''),
     department: new FormControl(''),
     intro: new FormControl(''),
-    requirements: new FormControl(''),
-    responsibilities: new FormControl(''),
+    content: new FormControl(''),
+    // requirements: new FormControl(''),
+    // responsibilities: new FormControl(''),
     contact: new FormControl(''),
-    // expires: new FormControl(''),
     active: new FormControl(false),
     accept_terms: new FormControl(false),
   })
-
-  // formFields = [
-  //  { name: "title", type: "text", placeholder: "Title" },
-  //  { name: "department", type: "text", placeholder: "Dept" },
-  //  { name: "intro", type: "textarea", placeholder: "Intro text" },
-  //  { name: "requirements", type: "textarea", placeholder: "Candidate requirements" },
-  //  { name: "responsibilities", type: "textarea", placeholder: "Role Responsibilities" },
-  //  { name: "contact", type: "textarea", placeholder: "Contact details" },
-  // //  { name: "expires", type: "text", placeholder: "expires" },
-  //  { name: "active", type: "select", placeholder: "active" },
-  // ]
 
   constructor(private firestore: AngularFirestore) { }
 
@@ -52,40 +43,75 @@ export class VacanciesService {
       this.firestore
         .collection("gsdh_vacancies") // "table" in Firebase.
         .add(data)
-        .then(res => {}, err => reject(err));
+        .then(res => resolve(data), err => reject(err));
     });
   }
 
   // read
+  // todo filter by department
 
-  getVacancies() { 
-    return this.firestore.collection("gsdh_vacancies").snapshotChanges(); // snapshot() keeps track of any changes that happens
-    // return new Promise<any>((resolve, reject) => {
-    //   this.firestore.collection('/gsdh_vacancies').snapshotChanges()
-    //   .subscribe(snapshots => {
-    //     resolve(snapshots)
-    //   })
-    // })
-  }
-
-  // TODO finish.... 
-  getVacancy(id) { 
-    // return this.firestore.collection("gsdh_vacancies").doc(id);
+  getVacancies(department = "") { 
     return new Promise<any>((resolve, reject) => {
-      this.firestore.doc(id).snapshotChanges()
+      this.firestore.collection('/gsdh_vacancies').snapshotChanges()
       .subscribe(snapshots => {
         resolve(snapshots)
       })
     })
   }
 
+  getVacancy(id) {  
+    return new Promise<any>((resolve, reject) => {
+      this.firestore.collection("gsdh_vacancies").doc(id).ref.get()
+      .then(doc => resolve(doc.data()) 
+      ).catch(function(error) {
+        reject(Error(error))
+      });
+    })
+  }
+
+  getVacancyBySlug(slug) {  
+    return new Promise<any>((resolve, reject) => {
+      this.firestore.collection("gsdh_vacancies").ref.where('slug', '==', slug).get()
+      .then(docs => {
+        let n = 0;
+        docs.forEach(doc => { 
+         if(n == 0) resolve(doc.data()) ;
+         n++;
+        })
+      }
+      ).catch(function(error) {
+        reject(Error(error))
+      });
+    })
+  }
+
   // update
 
-  updateVacancies(data){
-    this.firestore
-    .collection("gsdh_vacancies")
-    .doc(data.payload.doc.id) // choose the document
-    .set({ completed: true }, { merge: true });
+  updateVacancy(data, id){
+
+// TODO Validation
+
+    return new Promise<any>((resolve, reject) => {
+      this.firestore
+      .collection("gsdh_vacancies")
+      .doc(id)  
+      .set({ 
+          title: data.title,
+          image_url: data.image_url,
+          department: data.department,
+          slug: data.slug,
+          intro: data.intro,
+          content: data.content,
+          // requirements: data.requirements,
+          // responsibilities: data.responsibilities,
+          contact: data.contact,
+          active:  data.active,
+       }, { merge: true })
+       .then(result => resolve(result))
+       .catch(error => reject(Error(error)));
+    });
+
+  
   }
 
   // delete
@@ -107,12 +133,13 @@ export class VacanciesService {
     this.form = new FormGroup({
       title: new FormControl(itemPayload.title),
       image_url: new FormControl(itemPayload.image_url),
+      slug: new FormControl(itemPayload.slug),
       department: new FormControl(itemPayload.department),
       intro: new FormControl(itemPayload.intro),
-      requirements: new FormControl(itemPayload.requirements),
-      responsibilities: new FormControl(itemPayload.responsibilities),
+      content: new FormControl(itemPayload.content),
+      // requirements: new FormControl(itemPayload.requirements),
+      // responsibilities: new FormControl(itemPayload.responsibilities),
       contact: new FormControl(itemPayload.contact),
-      // expires: new FormControl(''),
       active: new FormControl(itemPayload.active),
       accept_terms: new FormControl(itemPayload.accept_terms),
     })
@@ -127,9 +154,11 @@ export class VacanciesService {
       title: new FormControl(''),
       image_url: new FormControl(''),
       department: new FormControl(''),
+      slug: new FormControl(''),
       intro: new FormControl(''),
-      requirements: new FormControl(''),
-      responsibilities: new FormControl(''),
+      content: new FormControl(''),
+      // requirements: new FormControl(''),
+      // responsibilities: new FormControl(''),
       contact: new FormControl(''),
       // expires: new FormControl(''),
       active: new FormControl(false),

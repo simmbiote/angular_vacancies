@@ -3,6 +3,11 @@
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
 
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -46,7 +51,7 @@ a {
   margin: 0 auto;
 }
 
-p {
+body {
   line-height: 1.7;
 }
 
@@ -61,7 +66,24 @@ p {
   color: #fff;
 }
 
-textarea, body .mat-form-field-infix, body .mat-form-field,
+textarea,
+body .mat-form-field-infix,
+body .mat-form-field,
 input[type="text"] {
   width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.quill-editor {
+  margin-bottom: 30px;
+  display: block;
+}
+
+footer {
+  padding: 60px 0;
+  margin: 60px 0 0;
+  background-color: #f1f1f1;
 }

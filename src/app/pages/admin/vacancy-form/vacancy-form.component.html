@@ -14,6 +14,11 @@
         </div>
         <div class="col-3">
           <mat-form-field>
+            <input formControlName="slug" required matInput placeholder="Slug / Vanity Url">
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field>
             <mat-select formControlName="active" placeholder="Active">
               <mat-option value="1">Active</mat-option>
               <mat-option value="0">Inactive</mat-option>
@@ -26,27 +31,25 @@
           </mat-form-field>
         </div>
         <div class="col-12">
-          <mat-form-field>
-            <textarea formControlName="intro" rows="10" required matInput placeholder="Intro"></textarea>
-          </mat-form-field>
-        </div>
+            <!-- <mat-form-field>
+              <textarea formControlName="intro" rows="10" required matInput placeholder="Intro"></textarea>
+            </mat-form-field> -->
+            <label for="intro-text">Intro</label>
+            <!-- <div id="intro-text"  class="quill-editor" contenteditable="true" formControlName="intro"></div> -->
+            <quill-editor class="quill-editor" formControlName="intro"></quill-editor>
+          </div>
+          
+          <div class="col-12">
+              <label for="intro-text">Full details</label>
+              <quill-editor  class="quill-editor" formControlName="content"></quill-editor>
+            </div>
 
         <div class="col-12">
-          <mat-form-field>
-            <textarea formControlName="requirements" required rows="10" matInput
-              placeholder="Candidate Requirements"></textarea>
-          </mat-form-field>
-        </div>
-        <div class="col-12">
-          <mat-form-field>
-            <textarea formControlName="responsibilities" required rows="10" matInput
-              placeholder="Responsibilities"></textarea>
-          </mat-form-field>
-        </div>
-        <div class="col-12">
-          <mat-form-field>
-            <textarea formControlName="contact" rows="10" matInput placeholder="Contact"></textarea>
-          </mat-form-field>
+          <!-- <mat-form-field> -->
+              <!-- <textarea formControlName="contact" rows="10" matInput placeholder="Contact"></textarea> -->
+              <label for="contact-info">Contact info</label>
+              <quill-editor id="contact-info" class="quill-editor" formControlName="contact"></quill-editor>
+          <!-- </mat-form-field> -->
         </div>
         <div class="col-12">
           <p>

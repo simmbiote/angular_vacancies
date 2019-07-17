@@ -2,6 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
+import {MatDividerModule} from '@angular/material/divider';
+
+import { ContenteditableModule } from '@ng-stack/contenteditable';
+import { QuillModule } from 'ngx-quill'
+import { editorConfig } from './editor-config';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,30 +24,24 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { VacanciesService } from './services/vacancies.service';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { VacancyFormComponent } from './pages/admin/vacancy-form/vacancy-form.component';
 import { MatFormFieldModule, MatInputModule, MatRippleModule, MatSelectModule, MatCheckboxModule, MatTableModule, MatAccordion, MatExpansionModule, MatIconModule } from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { VacanciesComponent } from './components/modules/vacancies/vacancies.component';
+import { Slugify } from './filters/slug.pipe';
+import { VacancyComponent } from './components/modules/vacancies/vacancy/vacancy.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
 
-const appRoutes: Routes = [
+ const appRoutes: Routes = [
   { path: 'join-us', component: JoinUsComponent },
   { path: 'admin', component: AdminComponent  },
   { path: 'admin/:type/:id', component: AdminComponent  },
-  // { path: 'hero/:id',      component: HeroDetailComponent },
-  // {
-  //   path: 'heroes',
-  //   component: HeroListComponent,
-  //   data: { title: 'Heroes List' }
-  // },
-  // { path: '',
-  //   redirectTo: '/heroes',
-  //   pathMatch: 'full'
-  // },
-  { path: '',
-  component: HomepageComponent, 
-  },
+  { path: 'vacancies/:department', component: VacanciesComponent  },
+  { path: 'vacancies/:department/:id', component: VacancyComponent  },
+  { path: '', component: HomepageComponent, },
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -56,7 +55,11 @@ const appRoutes: Routes = [
     NotFoundComponent,
     HomepageComponent,
     AdminComponent,
-    VacancyFormComponent
+    VacancyFormComponent,
+    VacanciesComponent,
+    Slugify,
+    VacancyComponent,
+    FooterComponent,
         ],
   imports: [
 
@@ -69,7 +72,7 @@ const appRoutes: Routes = [
     MatCardModule,
     FlexLayoutModule,
     MatIconModule,
-
+    MatDividerModule,
 
     // Needed for FORMS 
     MatButtonModule,
@@ -80,8 +83,11 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatTableModule,
     MatExpansionModule,
+    ContenteditableModule,
+    QuillModule.forRoot(editorConfig),
 
     // Needed for DB INTERACTIONS
+    FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
