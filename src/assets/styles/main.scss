@@ -18,32 +18,28 @@
 // hue. Available color palettes: https://material.io/design/color/
 $gsdh-vacancies-primary: mat-palette($mat-grey, 800);
 $gsdh-vacancies-accent: mat-palette($mat-amber, A200, A100, A400);
+$gsdh-vacancies-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$gsdh-vacancies-theme: mat-light-theme($gsdh-vacancies-primary, $gsdh-vacancies-accent, $gsdh-vacancies-warn);
+
 
 $primary:  mat-palette($mat-grey, 800);
 $accent:  mat-palette($mat-amber, A200, A100, A400);
 $theme: mat-light-theme($primary, $accent);
 
-
 $primary-color: #ffc400;
 $secondary-color: #424242;
 
-
 $link-color: #333333;
 $component-active-bg: #333333; 
-// The warn palette is optional (defaults to red).
-$gsdh-vacancies-warn: mat-palette($mat-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$gsdh-vacancies-theme: mat-light-theme($gsdh-vacancies-primary, $gsdh-vacancies-accent, $gsdh-vacancies-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($gsdh-vacancies-theme);
 
-
-
-@import "~angular-material/angular-material.scss";
+//@import "~angular-material/angular-material.scss";
 
 $link-color:                #000000 !default;
 $link-decoration:           none !default;
@@ -162,4 +158,13 @@ h3 {
 
 .intro-text {
   font-size: 20px;
+}
+
+
+.panel-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  h2 {
+    margin-top: 0;}
 }

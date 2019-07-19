@@ -7,6 +7,12 @@ import {Query, QueryFn} from '@angular/fire/firestore';
     providedIn: 'root'
 })
 
+/***
+ * APPLICANT SERVICE
+ * This service is not used currently.
+ * Might not be practical to let applicants attach files, etc, which need to be stored...?
+ * */
+
 export class ApplicantsService {
 
     collection = 'job_applicants';
@@ -39,25 +45,6 @@ export class ApplicantsService {
                     .then(doc => resolve(doc.data())).catch(error => reject(Error(error)));
             });
         }
-        /*   if (where.length > 0) {
-               return new Promise<any>((resolve, reject) => {
-                   this.firestore.collection(this.collection, ref => {
-                       let query: Query = ref;
-                       where.forEach(whereItem => {
-                           // const parts = ['', '', ''];
-                           // query = query.where(parts[0], parts[1], parts[2]);
-                       });
-                       return query;
-                   }).get()
-                       .subscribe(docs => {
-                           let n = 0;
-                           docs.forEach(doc => {
-                               if (n === 0) resolve(doc.data());
-                               n++;
-                           });
-                       });
-               });
-           }*/
     }
 
     updateItem(data, id) {

@@ -1,0 +1,10 @@
+<h2>{{role}}</h2>
+<p>So you're thinking about joining the {{team | lowercase}} team? <br>We're glad to hear that!
+</p>
+<p>The first step is to simply email us your CV and contact details, along with any relevant links so that we can get to know about you and your skills.</p>
+<div *ngIf="applicationRequirements" [innerHTML]="applicationRequirements"></div>
+<p>
+    <a href="mailto:{{applyEmail}}?subject=Application for role of {{role}}">
+        <button mat-raised-button color="primary">Email your CV to {{applyEmail}} now</button>
+    </a>
+</p>

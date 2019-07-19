@@ -1,25 +1,28 @@
 <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2 col-sm-12">
-        [ logos ]
-      </div>
-      <div class="col-md-8 col-sm-12">
-        <div>6 Unter Sagi | 6362 Stansstad | Switzerland</div>
-        <div>66-68 Albert Road, Woodstock | 7925 Cape Town | South Africa</div>
-      </div>
-      <div class="col-md-2 col-sm-12">
-        <div>US +1 747 221 9869</div>
-        <div>EUR +49 89 235 159 49</div>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-12">
+                [ logos ]
+            </div>
+            <div class="col-md-7 col-sm-12">
+                <div>6 Unter Sagi | 6362 Stansstad | Switzerland</div>
+                <div>66-68 Albert Road, Woodstock | 7925 Cape Town | South Africa</div>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <div>US +1 747 221 9869</div>
+                <div>EUR +49 89 235 159 49</div>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
 <footer class="sub-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-sm-12">Copyright © the factory 2019 | All Rights Reserved</div>
-      <div class="col-md-2 col-sm-12 ">Imprint | Privacy Policy</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12">Copyright © the factory 2019 | All Rights Reserved</div>
+            <div class="col-md-3 col-sm-12 ">Imprint | Privacy Policy
+                <span *ngIf="!currentUser"> | <a href="#">Log In</a></span>
+                <span *ngIf="currentUser"> | <a href="#">Log Out</a></span>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
