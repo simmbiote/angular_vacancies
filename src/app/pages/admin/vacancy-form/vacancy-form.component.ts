@@ -59,6 +59,8 @@ export class VacancyFormComponent implements OnInit {
         });
         // Create
       } else {
+        console.log('data to add', this.vacancy, data)
+
         this.vacanciesService.createVacancy(data)  
         .then(data =>  {
           console.log("Added data", data)

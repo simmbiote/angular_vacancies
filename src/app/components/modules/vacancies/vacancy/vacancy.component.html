@@ -1,18 +1,23 @@
 <div class="container" *ngIf="item">
   <div class="row">
     <div class="col-12" *ngIf="item.active">
-      <img
-        src="{{ item.img || 'https://storage.googleapis.com/gd-wagtail-prod-assets/original_images/Jobs_UX_Writer_2x1.png' }}"
-        alt="{{item.title}}">
-      <h1> {{ item.title }}</h1>
-      <h4>{{ item.department }}</h4>
+      <div class="item-hero-image " *ngIf="item.img">
+          <img src="{{ item.img || 'https://storage.googleapis.com/gd-wagtail-prod-assets/original_images/Jobs_UX_Writer_2x1.png' }}" alt="{{item.title}}">
+      </div>
+      <div class="specs-container">
+          <h1> {{ item.title }}</h1>
+          <div class="intro-text" [innerHTML]="item.intro"></div>
+          <div [innerHTML]="item.content"></div>
+          <div>
+            <button mat-button color="primary" >Apply now &raquo;</button>
+          </div>
+          <h3>Contact</h3>
+          <div [innerHTML]="item.contact"></div>
+          <div>
+              <button mat-button color="primary" >Join us &raquo;</button>
+          </div>
 
-      <div [innerHTML]="item.intro"></div>
-
-      <div [innerHTML]="item.content"></div>
- 
-     <h3>Contact</h3>
-      {{ item.contact }}
+      </div>
     </div>
     <div class="col-12" *ngIf="!item.active">
         This item is not available.

@@ -19,6 +19,12 @@
 $gsdh-vacancies-primary: mat-palette($mat-grey, 800);
 $gsdh-vacancies-accent: mat-palette($mat-amber, A200, A100, A400);
 
+$primary:  mat-palette($mat-grey, 800);
+$accent:  mat-palette($mat-amber, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+
+$link-color: #333333;
+$component-active-bg: #333333; 
 // The warn palette is optional (defaults to red).
 $gsdh-vacancies-warn: mat-palette($mat-red);
 
@@ -32,10 +38,13 @@ $gsdh-vacancies-theme: mat-light-theme($gsdh-vacancies-primary, $gsdh-vacancies-
 
 @import "~angular-material/angular-material.scss";
 
-@import "~bootstrap-4-grid/scss/grid.scss";
+// @import "~bootstrap-4-grid/css/grid.min.css";
+@import "~bootstrap-4-grid/grid/bootstrap-grid.scss";
+// @import "~bootstrap-4-grid/scss/grid.scss";
 
 $primary-color: #ffc400;
 $secondary-color: #424242;
+
 
 a {
   color: #000;
@@ -51,8 +60,14 @@ a {
   margin: 0 auto;
 }
 
+.specs-container {
+  max-width: 790px;
+  margin: 0 auto;
+}
+
 body {
   line-height: 1.7;
+  color: #666666
 }
 
 .mat-card {
@@ -83,7 +98,50 @@ input[type="text"] {
 }
 
 footer {
-  padding: 60px 0;
+  padding: 30px 0 30px;
   margin: 60px 0 0;
   background-color: #f1f1f1;
+  font-size: 14px;
+}
+
+.sub-footer {
+  margin-top: 0px;
+  padding: 15px 0;
+  background-color: #999999;
+
+}
+
+.text-right {
+  text-align: right
+}
+
+strong {
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 400;
+  margin: 30px 0; color: #222;
+  font-size: 200%;
+}
+
+h2,
+h3,
+h4 {
+  font-weight: 400;
+}
+
+h2,
+h3 {
+  font-size: 150%;
+  font-weight: 400;
+  color: $secondary-color;
+}
+
+.item-hero-image {
+  margin-bottom: 30px;
+}
+
+.intro-text {
+  font-size: 20px;
 }

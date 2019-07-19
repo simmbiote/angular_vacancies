@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { VacanciesService } from '../../services/vacancies.service';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit {
   id;
   displayedColumns: string[] = ['title', 'department', 'active', 'actions'];
 
-  constructor(private vacanciesService: VacanciesService, private route:ActivatedRoute) { }
+  constructor(private vacanciesService: VacanciesService, private route:ActivatedRoute, private router: Router) { }
   
   ngOnInit() {
     this.getItems();
@@ -36,6 +36,7 @@ export class AdminComponent implements OnInit {
    deleteItem = item => {
     if(!confirm(`Are you sure you  want to delete ${item.payload.doc.data().title}`)) return false;
     this.vacanciesService.deleteVacancy(item);
+    this.router.navigate(['/admin']);
     return false;
    }
 
