@@ -23,6 +23,11 @@ $primary:  mat-palette($mat-grey, 800);
 $accent:  mat-palette($mat-amber, A200, A100, A400);
 $theme: mat-light-theme($primary, $accent);
 
+
+$primary-color: #ffc400;
+$secondary-color: #424242;
+
+
 $link-color: #333333;
 $component-active-bg: #333333; 
 // The warn palette is optional (defaults to red).
@@ -36,14 +41,27 @@ $gsdh-vacancies-theme: mat-light-theme($gsdh-vacancies-primary, $gsdh-vacancies-
 // that you are using.
 @include angular-material-theme($gsdh-vacancies-theme);
 
+
+
 @import "~angular-material/angular-material.scss";
 
+$link-color:                #000000 !default;
+$link-decoration:           none !default;
+$link-hover-color:          darken($link-color, 15%) !default;
+$link-hover-decoration:     underline !default;
+
+$custom-control-indicator-checked-disabled-bg:  rgba($link-color, .5);
+
 // @import "~bootstrap-4-grid/css/grid.min.css";
-@import "~bootstrap-4-grid/grid/bootstrap-grid.scss";
+@import "~bootstrap-4-grid/scss/breakpoints/mixins/breakpoints";
+@import "~bootstrap-4-grid/scss/grid/bootstrap-grid";
+@import "~bootstrap-4-grid/scss/sizing/utilities/sizing";
+@import "~bootstrap-4-grid/scss/layout/utilities/spacing";
+@import "~bootstrap-4-grid/scss/layout/mixins/visibility";
+@import "~bootstrap-4-grid/scss/layout/utilities/visibility";
 // @import "~bootstrap-4-grid/scss/grid.scss";
 
-$primary-color: #ffc400;
-$secondary-color: #424242;
+
 
 
 a {
