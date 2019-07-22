@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {RouterModule, Routes} from '@angular/router';
 import {MatDividerModule} from '@angular/material/divider';
@@ -48,7 +48,7 @@ import {VacancyComponent, DialogDataComponent} from './components/modules/vacanc
 import {FooterComponent} from './components/layout/footer/footer.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
-import {AuthGuard, FakeBackendProvider} from './helpers';
+import {AuthGuard, ErrorInterceptor, FakeBackendProvider, JwtInterceptor} from './helpers';
 import {LoginComponent} from './components/auth/login/login.component';
 
 const appRoutes: Routes = [
@@ -84,7 +84,7 @@ const appRoutes: Routes = [
     imports: [
 
         // Needed for General, Layout.
-        BrowserModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
         BrowserAnimationsModule,
         MatToolbarModule,
         MatMenuModule,
@@ -128,6 +128,9 @@ const appRoutes: Routes = [
         VacanciesService,
         FakeBackendProvider,
         AuthenticationService,
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+
     ],
     bootstrap: [AppComponent]
 })

@@ -1,10 +1,8 @@
 <!--https://www.youtube.com/watch?v=t6QJFny0yJI-->
-
 <div class="container">
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
             <h2>Login</h2>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
@@ -28,12 +26,13 @@
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>
                 </div>
+                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
                 <div class="form-group">
                     <button mat-raised-button [disabled]="loading" class="btn btn-primary">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                         Login
                     </button>
-                    <button routerLink="/register" mat-flat-button> Register</button>
+                    <!--<button routerLink="/register" mat-flat-button> Register</button>-->
                 </div>
             </form>
         </div>

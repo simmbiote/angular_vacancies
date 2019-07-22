@@ -1,6 +1,7 @@
 {
   "name": "gsdh-vacancies",
   "short_name": "gsdh-vacancies",
+  "description": "Work at GSDH.",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
