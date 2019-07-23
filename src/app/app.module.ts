@@ -1,4 +1,4 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Meta} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -36,7 +36,6 @@ import {
     MatSelectModule,
     MatCheckboxModule,
     MatTableModule,
-    MatAccordion,
     MatExpansionModule,
     MatIconModule
 } from '@angular/material';
@@ -85,6 +84,7 @@ const appRoutes: Routes = [
 
         // Needed for General, Layout.
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        Meta, // Meta tags.
         BrowserAnimationsModule,
         MatToolbarModule,
         MatMenuModule,

@@ -26,7 +26,7 @@
         <ng-container matColumnDef="actions"  >  
           <mat-header-cell *matHeaderCellDef> actions </mat-header-cell>
           <mat-cell *matCellDef="let item">
-            <a [routerLink]="['admin/vacancy',item.payload.doc.id]" href="#edit{{item.payload.doc.id}}" ><mat-icon>edit</mat-icon></a>
+            <a [routerLink]="['/admin/vacancy',item.payload.doc.id]" href="#edit{{item.payload.doc.id}}" ><mat-icon>edit</mat-icon></a>
             <a href="#view" target="_blank" [routerLink]="['/vacancies/', item.payload.doc.data().department.toLowerCase().replace(' ','-'), item.payload.doc.data().slug]" title="View"><mat-icon>launch</mat-icon></a>
             <a href="#" (click)="this.deleteItem(item)"><mat-icon>delete</mat-icon></a>  </mat-cell>
         </ng-container>
